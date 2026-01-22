@@ -5,6 +5,7 @@ import {
   removeFromCart,
   increaseQuantity,
   decreaseQuantity,
+  clearCart,
 } from "../redux/api/cartSlice";
 import css from "./Cart.module.css";
 
@@ -14,6 +15,7 @@ const CartPage = () => {
   const { data, isLoading, error } = useGetCartQuery(undefined, {
     skip: !token,
   });
+
   console.log("the data are:", data);
   const items = useSelector((state) => state.cart.items);
 

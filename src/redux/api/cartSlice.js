@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { apiSlice } from "./apiSlice";
+import { logOut } from "./authSlice";
 
 
 const initialState = {
@@ -34,9 +35,15 @@ const cartSlice = createSlice({
         item.quantity = Number(item.quantity) - 1;
       }
     },
+    clearCart: (state) => {
+      state.items = [];
+    },
   },
   extraReducers: (builder) => {
     builder
+      .addCase(logOut, (state) => {
+        state.items = [];
+      })
       .addMatcher(
         apiSlice.endpoints.getCart.matchFulfilled,
         (state, { payload }) => {
@@ -52,5 +59,5 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, removeFromCart, increaseQuantity, decreaseQuantity } = cartSlice.actions;
+export const { addToCart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;
