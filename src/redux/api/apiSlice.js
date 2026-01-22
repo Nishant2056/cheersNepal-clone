@@ -11,7 +11,6 @@ const baseQuery = fetchBaseQuery({
 
     if (token) {
       headers.set("Token", token); 
-      // headers.set("X-Auth-Token", token);
     }
 
     return headers;
