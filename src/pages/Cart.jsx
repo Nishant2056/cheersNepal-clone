@@ -5,6 +5,7 @@ import {
   removeFromCart,
   increaseQuantity,
   decreaseQuantity,
+  clearCart,
 } from "../redux/api/cartSlice";
 import css from "./Cart.module.css";
 
@@ -14,6 +15,8 @@ const CartPage = () => {
   const { data, isLoading, error } = useGetCartQuery(undefined, {
     skip: !token,
   });
+
+  console.log("the data are:", data);
   const items = useSelector((state) => state.cart.items);
 
   if (isLoading) return <div className="container mt-5">Loading cart...</div>;
@@ -39,7 +42,7 @@ const CartPage = () => {
               >
                 <div className="d-flex align-items-center">
                   <img
-                    src={item.image}
+                    src={`https://cheers.com.np/uploads/products/${item.image}`}
                     alt={item.name}
                     style={{
                       width: "50px",
