@@ -1,0 +1,23 @@
+body{
+  background-color: #FAFAFA !important;
+  color: #030712 !important;
+}
+.btn.btn-google {
+    background-color: white;
+    border: 1px solid #D1D5DB;
+    color: #3c4043;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 12px 24px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    
+}
+.btn.btn-google:hover {
+    background-color: white;
+    color: #3c4043;
+    border: 1px solid #D1D5DB;
+}

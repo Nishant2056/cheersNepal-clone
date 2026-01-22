@@ -1,0 +1,6 @@
+.categoryIcon{
+  transition: all 0.3s ease-in-out;
+}
+.categoryIcon:hover{
+  transform: scale(1.1);
+}

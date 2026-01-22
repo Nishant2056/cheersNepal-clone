@@ -1,0 +1,56 @@
+.mainHeader{
+  position: fixed;
+  width: 100%;
+  z-index: 99;
+}
+
+.topBar{
+  background: #0C183C;
+  padding: 12px;
+  color: #ffffff;
+}
+.topBar button{
+  background: transparent;
+  outline: none;
+  border: none;
+  color: #ffffff
+}
+
+.mainMenu{
+  padding: 10px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+.mainMenu input{
+  border: none;
+  outline: none;
+  margin-left: 12px;
+  width: 100%;
+  background: none;
+}
+.mainMenu input:focus{
+  outline: none;
+}
+
+.searchBox{
+  background-color: #EFF0F5;
+}
+.searchBox button{
+  border: none;
+  outline: none;
+  background-color: transparent;
+ border-right: 1px solid #666666;
+  border-radius: 0;
+  background-color: transparent !important;
+  color: #666666;
+}
+.searchBox button:hover{
+  color: #666666;
+}
+.searchBox button:active{
+  color: #666666 !important;
+}
+.categoryList{
+  max-height:210px;
+  overflow-y: scroll;
+  min-width: 200px;
+}

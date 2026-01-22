@@ -1,0 +1,27 @@
+.myLoginForm{
+  width: 50%;
+  margin-top: 30px;
+}
+.myLoginForm button{
+  background: #FF8000;
+  border: 1px solid #FF8000;
+}
+.myLoginForm button:hover{
+  background: #FF8000;
+  border: 1px solid #FF8000;
+}
+.myLoginForm input{
+  border: 1px solid #D1D5DB;
+  border-radius: 5px;
+}
+.myLoginForm input:focus{
+  box-shadow: none;
+  border-color: #D1D5DB;
+  outline: none
+}
+.myLoginForm button:active{
+  background: #FF8000 !important;
+  border: 1px solid #FF8000 !important;
+
+
+}
