@@ -4,15 +4,14 @@ import { setCredentials } from "./authSlice";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "https://cheers.com.np/api/v1",
-  prepareHeaders: (headers, { getState }) => {
-    const token = getState()?.auth?.token;
-
-    console.log("Sending token:", token);
-
-    if (token) {
+  prepareHeaders: (headers, { getState, endpoint }) => {
+    if (endpoint !== "login") {
+      const token = getState().auth.token;
+      console.log("Sending token:", token);
+       if (token) {
       headers.set("Token", token); 
     }
-
+    }
     return headers;
   },
 });
