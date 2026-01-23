@@ -11,8 +11,8 @@ const authSlice = createSlice({
   reducers: {
     setCredentials: (state, action) => {
       const { user, token } = action.payload;
-      state.user = user || null;
-      state.token = token || null;
+      state.user = user ? user :null;
+      state.token =  token ? token :null;
       if (token) {
         localStorage.setItem("token", token);
       }

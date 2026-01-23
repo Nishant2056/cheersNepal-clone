@@ -62,9 +62,6 @@ export const apiSlice = createApi({
       query: () => "/cart",
       providesTags: ["Cart"],
     }),
-
-   
-
     addToCart: builder.mutation({
       query: ({ productId, quantity }) => {
         const body = new URLSearchParams();
