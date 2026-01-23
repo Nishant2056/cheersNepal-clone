@@ -5,7 +5,6 @@ import {
   removeFromCart,
   increaseQuantity,
   decreaseQuantity,
-  clearCart,
 } from "../redux/api/cartSlice";
 import css from "./Cart.module.css";
 
@@ -29,7 +28,7 @@ const CartPage = () => {
 
   return (
     <div className={`${css.cartStatus} container mt-5`}>
-      <h2 className="mb-4">Shopping Cart</h2>
+      <h2 className="mb-4">Shoppin g Cart</h2>
       {!items || items.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
