@@ -46,7 +46,6 @@ const LoginForm = () => {
 
     try {
       await login({ username, password }).unwrap();
-      // token + redux state handled by apiSlice
       navigate("/dashboard");
     } catch (err) {
       console.error("Failed to login:", err);

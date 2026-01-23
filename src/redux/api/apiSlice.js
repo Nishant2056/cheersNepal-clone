@@ -40,20 +40,15 @@ export const apiSlice = createApi({
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
   try {
     const { data } = await queryFulfilled;
-
-    // API returns token directly as number/string
     const token = String(data);
-
     console.log("Login token:", token);
-
     dispatch(setCredentials({ token, user: null }));
     localStorage.setItem("token", token);
   } catch (err) {
     console.error("Login failed:", err);
   }
 }
-
-    }),
+}),
 
     getCategories: builder.query({
       query: () => "/category",
@@ -67,9 +62,6 @@ export const apiSlice = createApi({
       query: () => "/cart",
       providesTags: ["Cart"],
     }),
-
-   
-
     addToCart: builder.mutation({
       query: ({ productId, quantity }) => {
         const body = new URLSearchParams();

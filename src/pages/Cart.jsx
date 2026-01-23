@@ -5,7 +5,6 @@ import {
   removeFromCart,
   increaseQuantity,
   decreaseQuantity,
-  clearCart,
 } from "../redux/api/cartSlice";
 import css from "./Cart.module.css";
 

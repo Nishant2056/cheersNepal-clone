@@ -2,6 +2,7 @@ import css from "./Header.module.css";
 import Logo from "../../assets/cheers-logo.svg";
 import Buy from "../../assets/Buy.svg";
 import { useGetCategoriesQuery } from "../../redux/api/apiSlice";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const { data, error, isLoading } = useGetCategoriesQuery();
@@ -10,6 +11,7 @@ const Header = () => {
   // if (isLoading) return <div className="container mt-5">Loading...</div>;
   // if (error)
   //   return <div className="container mt-5">Error loading categories</div>;
+  const navigate = useNavigate();
 
   return (
     <div className={`${css.mainHeader}`}>
@@ -110,9 +112,12 @@ const Header = () => {
           </div>
 
           <div className="col-2 d-flex align-items-center justify-content-end">
-            <a href="/cart">
-              <img src={Buy} alt="" role="button" />
-            </a>
+            <img
+              src={Buy}
+              alt=""
+              role="button"
+              onClick={() => navigate("/cart")}
+            />
           </div>
         </div>
       </div>
