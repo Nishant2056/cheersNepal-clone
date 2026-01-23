@@ -40,12 +40,8 @@ export const apiSlice = createApi({
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
   try {
     const { data } = await queryFulfilled;
-
-    // API returns token directly as number/string
     const token = String(data);
-
     console.log("Login token:", token);
-
     dispatch(setCredentials({ token, user: null }));
     localStorage.setItem("token", token);
   } catch (err) {
