@@ -21,3 +21,12 @@ body{
     color: #3c4043;
     border: 1px solid #D1D5DB;
 }
+
+.slick-arrow::before{
+    font-size: 30px !important;
+    color: #212529 !important;
+}
+.slick-list{
+    margin-left: 12px !important;
+
+}

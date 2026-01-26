@@ -5,7 +5,7 @@ import {
   useGetCategoriesQuery,
   useGetCartQuery,
 } from "../../redux/api/apiSlice";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { logOut, selectCurrentToken } from "../../redux/api/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { IoMdLogOut } from "react-icons/io";
@@ -23,6 +23,16 @@ const Header = () => {
   //   return <div className="container mt-5">Error loading categories</div>;
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const handleSearch = (e) => {
+    const query = e.target.value;
+    setSearchParams((prev) => {
+      if (query) prev.set("search", query);
+      else prev.delete("search");
+      return prev;
+    });
+  };
 
   const handleLogout = () => {
     const confirmLogout = window.confirm("Are you sure you want to log out?");
@@ -125,7 +135,12 @@ const Header = () => {
                 </ul>
               </div>
 
-              <input type="text" placeholder="Search in..." />
+              <input
+                type="text"
+                placeholder="Search in..."
+                value={searchParams.get("search") || ""}
+                onChange={handleSearch}
+              />
             </div>
           </div>
 
@@ -144,16 +159,18 @@ const Header = () => {
               )}
             </div>
           </div>
-          <div className="col-1 text-end d-flex align-items-center justify-content-center">
-            <button
-              type="button"
-              className="btn btn-success d-flex align-items-center justify-content-center"
-              onClick={handleLogout}
-            >
-              {" "}
-              <IoMdLogOut />
-            </button>
-          </div>
+          {token && (
+            <div className="col-1 text-end d-flex align-items-center justify-content-center">
+              <button
+                type="button"
+                className="btn btn-success d-flex align-items-center justify-content-center"
+                onClick={handleLogout}
+              >
+                {" "}
+                <IoMdLogOut />
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
