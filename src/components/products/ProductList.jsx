@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Slider from "react-slick";
 import {
   useGetFeaturedProductsQuery,
@@ -20,18 +20,29 @@ const ProductList = () => {
 
   const token = useSelector(selectCurrentToken);
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const searchQuery = searchParams.get("search")?.toLowerCase() || "";
 
   const productsData = data?.data || data || [];
-  const categories = Array.isArray(productsData)
+  const allCategories = Array.isArray(productsData)
     ? productsData
     : Object.values(productsData);
+
+  const categories = allCategories
+    .map((category) => {
+      const filteredProducts = category.products?.filter((product) =>
+        product.name.toLowerCase().includes(searchQuery),
+      );
+      return { ...category, products: filteredProducts };
+    })
+    .filter((category) => category.products && category.products.length > 0);
 
   const sliderSettings = {
     dots: false,
     arrows: true,
     infinite: false,
     speed: 700,
-    slidesToShow: 4.5,
+    slidesToShow: 4.25,
     slidesToScroll: 1,
     responsive: [
       {
