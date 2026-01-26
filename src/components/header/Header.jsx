@@ -16,7 +16,10 @@ const Header = () => {
   const token = useSelector(selectCurrentToken);
   useGetCartQuery(undefined, { skip: !token });
   const cartItems = useSelector((state) => state.cart?.items || []);
-  const cartItemCounter = cartItems.length;
+  const cartItemCounter = cartItems.reduce(
+    (acc, item) => acc + (Number(item.quantity) || 1),
+    0,
+  );
 
   // if (isLoading) return <div className="container mt-5">Loading...</div>;
   // if (error)
