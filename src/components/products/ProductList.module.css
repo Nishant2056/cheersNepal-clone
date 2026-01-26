@@ -1,10 +1,22 @@
 .cardImg{
   width: 130px;
-  height: 130px;
+  height: 200px;
   object-fit: contain;
   margin: 0 auto;
   transition: all 0.3s ease-in-out;
 }
 .cardImg:hover{
-  transform: scale(1.1);
+  transform: scale(1.15);
+}
+.cartBtn{
+  background: #FF8000;
+  border: 1px solid #FF8000;
+}
+.cartBtn:disabled{
+  background: #FF8000;
+  border: 1px solid #FF8000;
+}
+.cartBtn:hover{
+  background: #FF8000;
+  border: 1px solid #FF8000;
 }
