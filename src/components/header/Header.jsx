@@ -144,16 +144,18 @@ const Header = () => {
               )}
             </div>
           </div>
-          <div className="col-1 text-end d-flex align-items-center justify-content-center">
-            <button
-              type="button"
-              className="btn btn-success d-flex align-items-center justify-content-center"
-              onClick={handleLogout}
-            >
-              {" "}
-              <IoMdLogOut />
-            </button>
-          </div>
+          {token && (
+            <div className="col-1 text-end d-flex align-items-center justify-content-center">
+              <button
+                type="button"
+                className="btn btn-success d-flex align-items-center justify-content-center"
+                onClick={handleLogout}
+              >
+                {" "}
+                <IoMdLogOut />
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
