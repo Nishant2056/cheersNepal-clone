@@ -1,13 +1,27 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import LoginPage from "./pages/Login";
 import CartPage from "./pages/Cart";
 import DashboardPage from "./pages/Dashboard";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/header/Header";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "./redux/api/authSlice";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token && token !== "undefined") {
+      dispatch(setCredentials({ token }));
+    }
+  }, [dispatch]);
+
   return (
     <BrowserRouter>
       <Header />

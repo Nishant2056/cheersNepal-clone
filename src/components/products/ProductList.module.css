@@ -24,3 +24,9 @@
   background: #FF8000 !important;
   border: 1px solid #FF8000 !important;
 }
+.cardTitle{
+  font-size: 14px;
+}
+.cardPrice{
+  font-size: 14px;
+}
