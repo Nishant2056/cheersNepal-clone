@@ -25,7 +25,13 @@ const ProductList = () => {
 
   const handleAddToCart = async (product) => {
     if (!token) {
-      navigate("/login");
+      setToastMessage("Please log in to add items to your cart.");
+      setShowToast(true);
+      if (toastTimer.current) clearTimeout(toastTimer.current);
+      toastTimer.current = setTimeout(() => setShowToast(false), 1500);
+      setTimeout(() => {
+        navigate("/login");
+      }, 1000);
       return;
     }
 
@@ -34,7 +40,7 @@ const ProductList = () => {
         productId: product.id,
         quantity: 1,
       }).unwrap();
-      setToastMessage(`${product.name} - ${res.message}`);
+      setToastMessage(`${product.name} -> ${res.message}`);
       setShowToast(true);
       if (toastTimer.current) clearTimeout(toastTimer.current);
       toastTimer.current = setTimeout(() => setShowToast(false), 3000);

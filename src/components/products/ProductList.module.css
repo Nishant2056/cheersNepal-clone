@@ -20,3 +20,7 @@
   background: #FF8000;
   border: 1px solid #FF8000;
 }
+.cartBtn:active{
+  background: #FF8000 !important;
+  border: 1px solid #FF8000 !important;
+}

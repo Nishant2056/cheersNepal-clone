@@ -3,6 +3,8 @@ import Logo from "../../assets/cheers-logo.svg";
 import Buy from "../../assets/Buy.svg";
 import { useGetCategoriesQuery } from "../../redux/api/apiSlice";
 import { useNavigate } from "react-router-dom";
+import { logOut } from "../../redux/api/authSlice";
+import { useDispatch } from "react-redux";
 
 const Header = () => {
   const { data, error, isLoading } = useGetCategoriesQuery();
@@ -12,6 +14,11 @@ const Header = () => {
   // if (error)
   //   return <div className="container mt-5">Error loading categories</div>;
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logOut());
+  };
 
   return (
     <div className={`${css.mainHeader}`}>
@@ -118,6 +125,16 @@ const Header = () => {
               role="button"
               onClick={() => navigate("/cart")}
             />
+          </div>
+          <div className="col-1 text-end d-flex align-items-center justify-content-center">
+            <button
+              type="button"
+              className="btn btn-success"
+              onClick={handleLogout}
+            >
+              {" "}
+              Logout
+            </button>
           </div>
         </div>
       </div>
