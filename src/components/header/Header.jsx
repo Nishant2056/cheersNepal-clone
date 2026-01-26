@@ -1,17 +1,35 @@
 import css from "./Header.module.css";
 import Logo from "../../assets/cheers-logo.svg";
 import Buy from "../../assets/Buy.svg";
-import { useGetCategoriesQuery } from "../../redux/api/apiSlice";
+import {
+  useGetCategoriesQuery,
+  useGetCartQuery,
+} from "../../redux/api/apiSlice";
 import { useNavigate } from "react-router-dom";
+import { logOut, selectCurrentToken } from "../../redux/api/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { IoMdLogOut } from "react-icons/io";
 
 const Header = () => {
   const { data, error, isLoading } = useGetCategoriesQuery();
   const stores = Array.isArray(data) ? data : data?.data || [];
+  const token = useSelector(selectCurrentToken);
+  useGetCartQuery(undefined, { skip: !token });
+  const cartItems = useSelector((state) => state.cart?.items || []);
+  const cartItemCounter = cartItems.length;
 
   // if (isLoading) return <div className="container mt-5">Loading...</div>;
   // if (error)
   //   return <div className="container mt-5">Error loading categories</div>;
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    const confirmLogout = window.confirm("Are you sure you want to log out?");
+    if (confirmLogout) {
+      dispatch(logOut());
+    }
+  };
 
   return (
     <div className={`${css.mainHeader}`}>
@@ -112,12 +130,29 @@ const Header = () => {
           </div>
 
           <div className="col-2 d-flex align-items-center justify-content-end">
-            <img
-              src={Buy}
-              alt=""
-              role="button"
-              onClick={() => navigate("/cart")}
-            />
+            <div className="position-relative">
+              <img
+                src={Buy}
+                alt="Cart"
+                role="button"
+                onClick={() => navigate("/cart")}
+              />
+              {cartItemCounter >= 0 && (
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {cartItemCounter}
+                </span>
+              )}
+            </div>
+          </div>
+          <div className="col-1 text-end d-flex align-items-center justify-content-center">
+            <button
+              type="button"
+              className="btn btn-success d-flex align-items-center justify-content-center"
+              onClick={handleLogout}
+            >
+              {" "}
+              <IoMdLogOut />
+            </button>
           </div>
         </div>
       </div>

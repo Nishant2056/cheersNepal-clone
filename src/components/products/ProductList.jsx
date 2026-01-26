@@ -6,6 +6,7 @@ import {
   useAddToCartMutation,
 } from "../../redux/api/apiSlice.js";
 import { selectCurrentToken } from "../../redux/api/authSlice.js";
+import css from "./ProductList.module.css";
 
 const ProductList = () => {
   const [showToast, setShowToast] = useState(false);
@@ -24,13 +25,22 @@ const ProductList = () => {
 
   const handleAddToCart = async (product) => {
     if (!token) {
-      navigate("/login");
+      setToastMessage("Please log in to add items to your cart.");
+      setShowToast(true);
+      if (toastTimer.current) clearTimeout(toastTimer.current);
+      toastTimer.current = setTimeout(() => setShowToast(false), 1500);
+      setTimeout(() => {
+        navigate("/login");
+      }, 1000);
       return;
     }
 
     try {
-      await addToCart({ productId: product.id, quantity: 1 }).unwrap();
-      setToastMessage(`${product.name} added to cart!`);
+      const res = await addToCart({
+        productId: product.id,
+        quantity: 1,
+      }).unwrap();
+      setToastMessage(`${product.name} -> ${res.message}`);
       setShowToast(true);
       if (toastTimer.current) clearTimeout(toastTimer.current);
       toastTimer.current = setTimeout(() => setShowToast(false), 3000);
@@ -63,9 +73,9 @@ const ProductList = () => {
                   <div className="card h-100 shadow-sm">
                     <img
                       src={product.image}
-                      className="card-img-top p-3"
+                      className={`${css.cardImg} card-img-top p-3`}
                       alt={product.name}
-                      style={{ height: "200px", objectFit: "contain" }}
+                      style={{ cursor: "pointer" }}
                     />
                     <div className="card-body d-flex flex-column">
                       <h5
@@ -75,13 +85,13 @@ const ProductList = () => {
                         {product.name}
                       </h5>
                       {product.price && (
-                        <p className="card-text fw-bold text-primary">
+                        <p className="card-text fw-bold text-black">
                           Rs. {product.price}
                         </p>
                       )}
                       <div className="mt-auto">
                         <button
-                          className="btn btn-primary w-100"
+                          className={` ${css.cartBtn} btn btn-primary`}
                           onClick={() => handleAddToCart(product)}
                           disabled={product.status === "out-of-stock"}
                         >

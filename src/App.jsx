@@ -25,7 +25,7 @@ function App() {
       <Header />
       <main className="container py-4">
         <Routes>
-          <Route path="/" element={<LoginPage />} />
+          <Route path="/" element={<DashboardPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
