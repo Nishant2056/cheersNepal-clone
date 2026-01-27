@@ -78,7 +78,7 @@ const Header = () => {
         <div className="container d-flex">
           <div className="col-2">
             <a href="/">
-              <img src={Logo} alt="Logo" />
+              <img src={Logo} className="img-fluid" alt="Logo" />
             </a>
           </div>
           <div className="col-4 d-flex align-items-center">
