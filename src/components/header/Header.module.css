@@ -41,7 +41,7 @@
  border-right: 1px solid #666666;
   border-radius: 0;
   background-color: transparent !important;
-  color: #666666;
+  color: #666666 !important;
 }
 .searchBox button:hover{
   color: #666666;
@@ -51,14 +51,32 @@
 }
 .categoryList{
   max-height:210px;
+  min-width: 265px !important;
   overflow-y: scroll;
   min-width: 200px;
   transform:translate3d(-8px, 44.4px, 0px) !important ;
   border: none;
+  background-color: #EFF0F5;
 } 
 .categoryListItem {
-  transition: all 0.4s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .categoryListItem:hover{
   background-color: rgba(255, 128, 0, 0.8);
+}
+.categoryListItem:hover a{
+  color: #fafafa !important ;
+}
+.logoutBtn{
+  background: transparent;
+  border: 1px solid #FF8000;
+  color: black;
+}
+.logoutBtn:hover,
+.logoutBtn:active{
+  background: #FF8000 !important;
+  color: white;
+  border: 1px solid #FF8000 !important;
+
+
 }

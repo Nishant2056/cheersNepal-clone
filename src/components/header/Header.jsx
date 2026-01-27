@@ -8,7 +8,6 @@ import {
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { logOut, selectCurrentToken } from "../../redux/api/authSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { IoMdLogOut } from "react-icons/io";
 
 const Header = () => {
   const { data, error, isLoading } = useGetCategoriesQuery();
@@ -49,7 +48,7 @@ const Header = () => {
       <div className={css.topBar}>
         <div className="container">
           <div className="row align-items-center">
-            <div className="col-md-8">
+            <div className="col-6">
               <span className="me-4">
                 <strong>Order by Phone:</strong>{" "}
                 <a href="tel:015365008" className="text-white">
@@ -62,7 +61,7 @@ const Header = () => {
               </span>
             </div>
 
-            <div className="col-md-4 text-end">
+            <div className="col-6 text-end">
               <span className="me-3">Cash or Card on Delivery</span>
 
               <button className="currency-selector">
@@ -78,7 +77,7 @@ const Header = () => {
         <div className="container d-flex">
           <div className="col-2">
             <a href="/">
-              <img src={Logo} className="img-fluid" alt="Logo" />
+              <img src={Logo} alt="Logo" />
             </a>
           </div>
           <div className="col-4 d-flex align-items-center">
@@ -119,8 +118,8 @@ const Header = () => {
 
                 <ul className={`${css.categoryList} dropdown-menu`}>
                   {stores.map((store) => (
-                    <div key={store.id} className="mb-5">
-                      <h3 className="mb-4 border-bottom pb-2 text-center">
+                    <div key={store.id} className="mb-2">
+                      <h3 className="mb-2 pb-2 text-center">
                         {store.store_name}
                       </h3>
 
@@ -128,10 +127,13 @@ const Header = () => {
                         Object.values(store.category).map((cat) => (
                           <li
                             key={cat.id}
-                            className={` ${css.categoryListItem} mb-2 list-unstyled p-2`}
+                            className={` ${css.categoryListItem} list-unstyled p-2 border-bottom`}
                           >
                             <a
-                              href="#"
+                              href={
+                                "#" +
+                                cat.name.toLowerCase().replaceAll(" ", "-")
+                              }
                               className="text-decoration-none text-black fw-semibold d-flex align-items-center"
                             >
                               <img
@@ -162,7 +164,7 @@ const Header = () => {
             </div>
           </div>
 
-          <div className="col-2 d-flex align-items-center justify-content-end">
+          <div className="col-1 d-flex align-items-center d-flex justify-content-center">
             <div className="position-relative">
               <img
                 src={Buy}
@@ -178,14 +180,14 @@ const Header = () => {
             </div>
           </div>
           {token && (
-            <div className="col-1 text-end d-flex align-items-center justify-content-center">
+            <div className="col-1 text-end d-flex align-items-center justify-content-end">
               <button
                 type="button"
-                className="btn btn-success d-flex align-items-center justify-content-center"
+                className={`${css.logoutBtn} btn btn-success d-flex align-items-center justify-content-center`}
                 onClick={handleLogout}
               >
                 {" "}
-                <IoMdLogOut />
+                Logout
               </button>
             </div>
           )}
