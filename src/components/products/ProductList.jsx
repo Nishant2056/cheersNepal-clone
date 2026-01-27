@@ -69,8 +69,7 @@ const ProductList = () => {
 
   const handleAddToCart = async (product) => {
     if (!token) {
-      showToastMessage("Please log in to add items to your cart.", 1500);
-      setTimeout(() => navigate("/login"), 1500);
+      showToastMessage("Please log in to add items to your cart.", 3000);
       return;
     }
 
