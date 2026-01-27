@@ -1,4 +1,5 @@
 import { useGetCategoriesQuery } from "../../redux/api/apiSlice.js";
+import css from "./Categories.module.css";
 
 const Categories = () => {
   const { data, error, isLoading } = useGetCategoriesQuery();
@@ -22,11 +23,12 @@ const Categories = () => {
                     <img
                       src={cat.icon}
                       alt={cat.name}
-                      className="card-img-top mx-auto mb-2"
+                      className={` ${css.categoryIcon} card-img-top mx-auto mb-2`}
                       style={{
                         width: "60px",
                         height: "60px",
                         objectFit: "contain",
+                        transition: "transform 0.3s ease-in-out",
                       }}
                     />
 

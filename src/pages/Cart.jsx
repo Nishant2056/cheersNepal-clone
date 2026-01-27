@@ -90,7 +90,7 @@ const CartPage = () => {
           <div className="d-flex justify-content-end align-items-center">
             <h4 className="me-3 mb-0">Grand Total: रु {totalAmount}</h4>
             <button type="button" className="btn btn-success">
-              Buy Now
+              Checkout
             </button>
           </div>
         </>
