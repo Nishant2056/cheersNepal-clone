@@ -48,7 +48,7 @@ const Header = () => {
       <div className={css.topBar}>
         <div className="container">
           <div className="row align-items-center">
-            <div className="col-md-8">
+            <div className="col-6">
               <span className="me-4">
                 <strong>Order by Phone:</strong>{" "}
                 <a href="tel:015365008" className="text-white">
@@ -61,7 +61,7 @@ const Header = () => {
               </span>
             </div>
 
-            <div className="col-md-4 text-end">
+            <div className="col-6 text-end">
               <span className="me-3">Cash or Card on Delivery</span>
 
               <button className="currency-selector">
@@ -177,7 +177,7 @@ const Header = () => {
             </div>
           </div>
           {token && (
-            <div className="col-2 text-end d-flex align-items-center justify-content-center">
+            <div className="col-1 text-end d-flex align-items-center justify-content-end">
               <button
                 type="button"
                 className={`${css.logoutBtn} btn btn-success d-flex align-items-center justify-content-center`}

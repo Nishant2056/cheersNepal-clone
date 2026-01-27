@@ -41,7 +41,7 @@
  border-right: 1px solid #666666;
   border-radius: 0;
   background-color: transparent !important;
-  color: #666666;
+  color: #666666 !important;
 }
 .searchBox button:hover{
   color: #666666;
@@ -57,10 +57,13 @@
   border: none;
 } 
 .categoryListItem {
-  transition: all 0.4s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .categoryListItem:hover{
   background-color: rgba(255, 128, 0, 0.8);
+}
+.categoryListItem:hover a{
+  color: #fafafa !important ;
 }
 .logoutBtn{
   background: transparent;
