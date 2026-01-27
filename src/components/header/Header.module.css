@@ -51,10 +51,12 @@
 }
 .categoryList{
   max-height:210px;
+  min-width: 265px !important;
   overflow-y: scroll;
   min-width: 200px;
   transform:translate3d(-8px, 44.4px, 0px) !important ;
   border: none;
+  background-color: #EFF0F5;
 } 
 .categoryListItem {
   transition: all 0.3s ease-in-out;

@@ -104,7 +104,11 @@ const ProductList = () => {
           {category.products && category.products.length > 0 ? (
             <Slider {...sliderSettings}>
               {category.products.map((product) => (
-                <div key={product.id} className="p-2">
+                <div
+                  key={product.id}
+                  className="p-2"
+                  id={category.category_name.toLowerCase().replaceAll(" ", "-")}
+                >
                   <div className="card h-100 shadow-sm">
                     <img
                       src={product.image}

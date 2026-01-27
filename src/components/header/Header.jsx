@@ -77,7 +77,7 @@ const Header = () => {
         <div className="container d-flex">
           <div className="col-2">
             <a href="/">
-              <img src={Logo} className="img-fluid" alt="Logo" />
+              <img src={Logo} alt="Logo" />
             </a>
           </div>
           <div className="col-4 d-flex align-items-center">
@@ -130,7 +130,10 @@ const Header = () => {
                             className={` ${css.categoryListItem} list-unstyled p-2 border-bottom`}
                           >
                             <a
-                              href="#"
+                              href={
+                                "#" +
+                                cat.name.toLowerCase().replaceAll(" ", "-")
+                              }
                               className="text-decoration-none text-black fw-semibold d-flex align-items-center"
                             >
                               <img
