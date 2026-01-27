@@ -130,7 +130,7 @@ const Header = () => {
                             key={cat.id}
                             className="mb-2 list-unstyled text-center p-2"
                           >
-                            <a href="#">{cat.name}</a>
+                            <a href={cat.name}>{cat.name}</a>
                           </li>
                         ))}
                     </div>

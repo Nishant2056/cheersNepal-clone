@@ -2,6 +2,5 @@
   transition: all 0.3s ease-in-out;
 }
 .categoryIcon:hover{
-  transform: scale(1.1);
-  transform: rotate(5deg);
+  transform: scale(1.2) rotate(5deg);
 }
