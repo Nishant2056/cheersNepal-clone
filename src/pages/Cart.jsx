@@ -3,8 +3,6 @@ import {
   useAddToCartMutation,
 } from "../redux/api/apiSlice.js";
 import { selectCurrentToken } from "../redux/api/authSlice";
-import { setCart } from "../redux/api/cartSlice";
-import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   removeFromCart,
