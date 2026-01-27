@@ -179,15 +179,24 @@ const Header = () => {
               )}
             </div>
           </div>
-          {token && (
+          {token ? (
             <div className="col-1 text-end d-flex align-items-center justify-content-end">
               <button
                 type="button"
                 className={`${css.logoutBtn} btn btn-success d-flex align-items-center justify-content-center`}
                 onClick={handleLogout}
               >
-                {" "}
                 Logout
+              </button>
+            </div>
+          ) : (
+            <div className="col-1 text-end d-flex align-items-center justify-content-end">
+              <button
+                type="button"
+                className={`${css.logoutBtn} btn btn-success d-flex align-items-center justify-content-center`}
+                onClick={() => navigate("/login")}
+              >
+                Login
               </button>
             </div>
           )}
