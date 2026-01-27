@@ -41,6 +41,7 @@ const Header = () => {
     const confirmLogout = window.confirm("Are you sure you want to log out?");
     if (confirmLogout) {
       dispatch(logOut());
+      navigate("/login");
     }
   };
 
