@@ -1,4 +1,7 @@
-import { useGetCartQuery } from "../redux/api/apiSlice.js";
+import {
+  useGetCartQuery,
+  useAddToCartMutation,
+} from "../redux/api/apiSlice.js";
 import { selectCurrentToken } from "../redux/api/authSlice";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -14,6 +17,7 @@ const CartPage = () => {
   const { data, isLoading, error } = useGetCartQuery(undefined, {
     skip: !token,
   });
+  const [addToCart] = useAddToCartMutation();
 
   console.log("the data are:", data);
   const items = useSelector((state) => state.cart.items);
@@ -58,14 +62,28 @@ const CartPage = () => {
                     <div className="d-flex align-items-center mt-2">
                       <button
                         className="btn btn-sm btn-outline-secondary"
-                        onClick={() => dispatch(decreaseQuantity(item.id))}
+                        onClick={() => {
+                          if (item.quantity > 1) {
+                            dispatch(decreaseQuantity(item.id));
+                            addToCart({
+                              productId: item.id,
+                              quantity: Number(item.quantity) - 1,
+                            });
+                          }
+                        }}
                       >
                         -
                       </button>
                       <span className="mx-3">{item.quantity}</span>
                       <button
                         className="btn btn-sm btn-outline-secondary"
-                        onClick={() => dispatch(increaseQuantity(item.id))}
+                        onClick={() => {
+                          dispatch(increaseQuantity(item.id));
+                          addToCart({
+                            productId: item.id,
+                            quantity: Number(item.quantity) + 1,
+                          });
+                        }}
                       >
                         +
                       </button>

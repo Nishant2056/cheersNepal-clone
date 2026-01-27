@@ -5,7 +5,7 @@ const Hero = () => {
   return (
     <div>
       <center className={`${css.heroPicture}`}>
-        <img src={HeroImg} alt="" />
+        <img src={HeroImg} alt="" className="img-fluid" />
       </center>
     </div>
   );

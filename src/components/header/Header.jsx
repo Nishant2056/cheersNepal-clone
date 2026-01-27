@@ -78,7 +78,7 @@ const Header = () => {
         <div className="container d-flex">
           <div className="col-2">
             <a href="/">
-              <img src={Logo} alt="Logo" />
+              <img src={Logo} className="img-fluid" alt="Logo" />
             </a>
           </div>
           <div className="col-4 d-flex align-items-center">
@@ -128,9 +128,24 @@ const Header = () => {
                         Object.values(store.category).map((cat) => (
                           <li
                             key={cat.id}
-                            className="mb-2 list-unstyled text-center p-2"
+                            className={` ${css.categoryListItem} mb-2 list-unstyled p-2`}
                           >
-                            <a href="#">{cat.name}</a>
+                            <a
+                              href="#"
+                              className="text-decoration-none text-black fw-semibold d-flex align-items-center"
+                            >
+                              <img
+                                src={cat.icon}
+                                alt=""
+                                style={{
+                                  width: "25px",
+                                  height: "25px",
+                                  objectFit: "contain",
+                                  marginRight: "5px",
+                                }}
+                              />
+                              {cat.name}
+                            </a>
                           </li>
                         ))}
                     </div>
