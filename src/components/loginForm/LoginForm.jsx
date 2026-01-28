@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../../redux/api/apiSlice";
 import GoogleImg from "../../assets/google-icon.svg";
@@ -8,18 +8,32 @@ import css from "./LoginForm.module.css";
 const LoginForm = () => {
   const [username, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const toastTimer = useRef(null);
 
   const [login, { isLoading }] = useLoginMutation();
   const navigate = useNavigate();
+
+  const showToastMessage = (message, duration = 3000) => {
+    setToastMessage(message);
+    setShowToast(true);
+    if (toastTimer.current) clearTimeout(toastTimer.current);
+    toastTimer.current = setTimeout(() => setShowToast(false), duration);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       await login({ username, password }).unwrap();
-      navigate("/dashboard");
+      showToastMessage("Login successful!");
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 1500);
     } catch (err) {
       console.error("Failed to login:", err);
+      showToastMessage("Please enter the valid email or password");
     }
 
     setEmail("");
@@ -39,6 +53,7 @@ const LoginForm = () => {
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             value={username}
+            required
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
@@ -52,6 +67,7 @@ const LoginForm = () => {
             className="form-control"
             id="exampleInputPassword1"
             value={password}
+            required
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
@@ -79,7 +95,6 @@ const LoginForm = () => {
           {isLoading ? "Logging in..." : "Login"}
         </button>
       </form>
-
       <div className="row align-items-center mt-4 mb-4">
         <div className="col">
           <hr />
@@ -93,7 +108,6 @@ const LoginForm = () => {
           <hr />
         </div>
       </div>
-
       <button className="btn btn-google w-100">
         <img src={GoogleImg} alt="Google" />
         <span>
@@ -116,6 +130,23 @@ const LoginForm = () => {
           </a>{" "}
         </p>
       </center>
+      {/* Toast */}
+      <div
+        className="toast-container position-fixed top-0 end-0 p-3"
+        style={{ zIndex: 999 }}
+      >
+        <div
+          className={`toast ${showToast ? "show" : ""}`}
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
+        >
+          <div className="toast-header">
+            <strong className="me-auto">Message</strong>
+          </div>
+          <div className="toast-body">{toastMessage}</div>
+        </div>
+      </div>{" "}
     </div>
   );
 };
