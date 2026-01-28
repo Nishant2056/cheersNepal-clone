@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../../redux/api/apiSlice";
-import { setCredentials } from "../../redux/api/authSlice";
 import GoogleImg from "../../assets/google-icon.svg";
 import FacebookImg from "../../assets/facebook.svg";
 import css from "./LoginForm.module.css";
@@ -12,34 +10,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
 
   const [login, { isLoading }] = useLoginMutation();
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   const credentials = { username, password };
-
-  //   try {
-  //     const userData = await login(credentials).unwrap();
-
-  //     if (userData?.token) {
-  //       localStorage.setItem("token", userData.token);
-  //     }
-
-  //     if (typeof userData === "object") {
-  //       dispatch(setCredentials({ ...userData }));
-  //     } else {
-  //       dispatch(setCredentials({ id: userData }));
-  //     }
-
-  //     navigate("/dashboard");
-  //   } catch (err) {
-  //     console.error("Failed to login:", err);
-  //   }
-  //   setEmail("");
-  //   setPassword("");
-  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
