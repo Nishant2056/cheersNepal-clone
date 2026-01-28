@@ -35,8 +35,6 @@ const LoginForm = () => {
       console.error("Failed to login:", err);
       showToastMessage("Invalid username or password");
     }
-
-    setEmail("");
     setPassword("");
   };
 
