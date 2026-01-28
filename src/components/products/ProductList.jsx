@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import Slider from "react-slick";
 import {
   useGetFeaturedProductsQuery,
@@ -19,7 +19,6 @@ const ProductList = () => {
   const [addToCart] = useAddToCartMutation();
 
   const token = useSelector(selectCurrentToken);
-  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get("search")?.toLowerCase() || "";
 
