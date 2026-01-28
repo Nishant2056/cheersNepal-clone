@@ -33,7 +33,7 @@ const LoginForm = () => {
       }, 1500);
     } catch (err) {
       console.error("Failed to login:", err);
-      showToastMessage("Please enter the valid email or password");
+      showToastMessage("Invalid username or password");
     }
 
     setEmail("");
@@ -144,7 +144,15 @@ const LoginForm = () => {
           <div className="toast-header">
             <strong className="me-auto">Message</strong>
           </div>
-          <div className="toast-body">{toastMessage}</div>
+          <div
+            className={`toast-body ${
+              toastMessage === "Login successful!"
+                ? "text-success"
+                : "text-danger"
+            }`}
+          >
+            {toastMessage}
+          </div>
         </div>
       </div>{" "}
     </div>
