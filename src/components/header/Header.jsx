@@ -10,7 +10,7 @@ import { logOut, selectCurrentToken } from "../../redux/api/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const Header = () => {
-  const { data, error, isLoading } = useGetCategoriesQuery();
+  const { data } = useGetCategoriesQuery();
   const stores = Array.isArray(data) ? data : data?.data || [];
   const token = useSelector(selectCurrentToken);
   useGetCartQuery(undefined, { skip: !token });
